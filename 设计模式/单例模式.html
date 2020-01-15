@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>单例模式</title>
+</head>
+<style>
+    .modal{
+        width:200px;position: fixed;height: 200px;
+        background-color: #999;
+    }
+</style>
+<body>
+    <button id="modal-btn">弹窗</button>
+</body>
+<script>
+    /*
+        单例模式：
+        定义：一个类只返回一个实例，一旦创建再次调用就直接返回
+        适⽤用场景：比如自定义弹窗，无论你程序中多少调用，都只应创建一个弹窗对象
+    */
+    function createSingleLayer(fn){
+        let instance; //缓存实例
+        return function(){
+            return instance || (instance=fn.apply(this,arguments))
+        }
+    }
+    function createModal(){
+        let div = document.createElement('div');
+        div.innerHTML = '我是弹窗';
+        div.className = 'modal';
+        div.style.display = 'none';
+        document.body.appendChild(div);
+        return div
+    }
+    document.getElementById('modal-btn').addEventListener('click', () =>{
+        //动态创建弹窗
+
+        //新建一个弹窗实例 内部使用单利模式管理 一直只有一个
+        let modalLayer = createSingleLayer(createModal)();
+        modalLayer.style.display = 'block'
+    })
+</script>
+</html>
