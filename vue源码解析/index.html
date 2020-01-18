@@ -8,42 +8,46 @@
 </head>
 <body>
     <div id="app">
-    <p>{{name}}</p>
-    <p k-text="name"></p>
-    <p>{{age}}</p>
-    <p>
-    {{doubleAge}}
-    </p>
-    <input type="text" k-model="name">
-    <button @click="changeName">呵呵</button>
-    compile.js
-    <div k-html="html"></div>
-    </div>
-    <script src='./compile.js'></script>
-    <script src='./xvue.js'></script>
-    <script>
-    let kaikeba = new KVue({
-    el:'#app',
-    data: {
-    name: "I am test.",
-    age:12,
-    html:'<button>这是一个按钮</button>'
-    },
-    created(){
-    console.log('开始啦')
-    setTimeout(()=>{
-    this.name='我是蜗牛'
-    }, 1500)
-    },
-    methods:{
-    changeName(){
-    this.name = '哈喽，开课吧'
-    this.age=1
-    this.id = 'xx'
-    console.log(1,this)
-    }
-    }
-    })
-    </script>
+            <p>{{name}}</p>
+            <p x-text="name"></p>
+            <p x-html="name"></p>
+            <p>{{age}}</p>
+            <p>{{doubleAge}}</p>
+            <input type="text" x-model="name">
+            <button @click="changeName">呵呵</button>
+            compile.js
+            <div x-html="html"></div>
+        </div>
+        <script src='./compile.js'></script>
+        <script src='./xvue.js'></script>
+        <script>
+            //vue的编译过程是怎样的？
+            //双向绑定原理是什么？
+            let kaikeba = new XVue({
+                el:'#app',
+                data: {
+                    name: "I am test.",
+                    age:12,
+                    html:'<button>这是一个按钮</button>'
+                },
+                created(){
+                    console.log('开始啦')
+                    setTimeout(()=>{
+                        this.name='我是蜗牛'
+                        setTimeout(()=>{
+                            this.name='我是xiaoxu'
+                        }, 1500)
+                    }, 1500)
+                },
+                methods:{
+                    changeName(){
+                        this.name = '哈喽，开课吧'
+                        this.age=1
+                        this.id = 'xx'
+                        console.log(1,this)
+                    }
+                }
+            })
+        </script>
     </body>
 </html>

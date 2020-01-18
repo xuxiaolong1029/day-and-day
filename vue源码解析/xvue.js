@@ -9,7 +9,11 @@ class XVue {
         //测试代码 模拟一下Watcher
       /*  new Watcher(); this.$data.test;
         new Watcher(); this.$data.foo.bar;*/
-        new Compile(options.el, this);
+        new Compile(options.el,this);
+        //created执行
+        if(options.created){
+            options.created.call(this)
+        }
     }
     Observe(value){
         if(!value || typeof value!=='object'){
@@ -17,7 +21,9 @@ class XVue {
         }
         //遍历对象
         Object.keys(value).map(key =>{
-            this.defineReactive(value,key,value[key])
+            this.defineReactive(value,key,value[key]);
+            //代理data中的属性到vue实例上
+            this.proxyData(key);
         })
     }
     //数据响应化
@@ -43,6 +49,17 @@ class XVue {
             }
         })
     }
+
+    proxyData(key){
+        Object.defineProperty(this,key,{
+            get(){
+                return this.$data[key]
+            },
+            set(newVal){
+                this.$data[key] = newVal;
+            }
+        })
+    }
 }
 
 //Dep 用来管理Watcher
@@ -62,11 +79,17 @@ class Dep {
 
 //Watcher
 class Watcher {
-    constructor(){
+    constructor(vm,key,callback){
+        this.vm = vm;
+        this.key = key;
+        this.callback = callback;
         //将当前Watcher实例指定的Dep静态属性target
         Dep.target = this;
+        this.vm[this.key];//触发getter,添加依赖
+        Dep.target = null;
     }
     update(){
-        console.log('属性更新了')
+       // console.log('属性更新了')
+       this.callback.call(this.vm,this.vm[this.key]);
     }
 }
