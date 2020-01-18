@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MVVM</title>
+</head>
+<body>
+ <input type="text" id="input" />
+ <div></div>
+ <script type="text/javascript">
+     "use strict";
+     const obj = {text:'3434'};
+     const input = document.getElementById('input');
+     const divTest = document.querySelector('div');
+     input.value = obj.text;
+     divTest.innerText = obj.text;
+     Object.defineProperty(obj,'text',{
+         set(val){
+             input.value = val;
+             divTest.innerHTML = val;
+         }
+     });
+     input.addEventListener('input',()=>{
+        obj.text = input.value
+     })
+ </script>
+</body>
+</html>

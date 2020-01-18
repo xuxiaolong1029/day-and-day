@@ -11,14 +11,15 @@ function a() {
     let i = 0;
     function b() {
         console.log(++i);
+        //如果console.log(++i) 则结果 为0 ，1,2
     }
     return b;
 }
 let c = a();
 
-c();
-c();
-c();
+c(); //1
+c();//2
+c();//3
 
 //例2
 var num = new Array();
