@@ -9,16 +9,37 @@
      <p id="name"></p>
  </div>
  <script type="text/javascript">
-     let obj = {};
-     Object.defineProperty(obj,'name',{
-         get(){
-             return document.querySelector('#name').innerHTML;
-         },
-         set(val){
-             document.querySelector('#name').innerHTML = val;
-         }
-     });
-     obj.name = 'Jerry';
+
+    function sup(){
+        this.colors=['red','blue','green']
+    }
+    function supt(){
+
+    }
+   // supt.prototype= new sup();
+    function sub(){
+        sup.call(this)
+    }
+    var instancea1 = new sub();
+   // var instanceb1 = new supt();
+    instancea1.colors.push('yellow');
+   // instanceb1.colors.push('block');
+    console.log("instancea1:"+instancea1.colors);
+   // console.log("instancebl:"+instanceb1.colors);
+    var instancea2 = new supt()
+//var instanceb2 = new supt()
+    console.log("instancea2:"+instancea2.colors)
+    //console.log("instanceb2:"+instanceb2.colors)
+    let obj = {};
+    Object.defineProperty(obj,'name',{
+        get(){
+            return document.querySelector('#name').innerHTML;
+        },
+        set(val){
+            document.querySelector('#name').innerHTML = val;
+        }
+    });
+    obj.name = 'Jerry';
  </script>
 </body>
 </html>
