@@ -34,20 +34,20 @@ module.exports = {
         });
 
       //   // 保护接口中间件
-        /*function auth(req, res, next) {
-          if (req.headers.token) {
-            // 已认证
-            next()
-          } else {
-            // 用户未授权
-            res.sendStatus(401)
-          }
-        }*/
+      function auth(req, res, next) {
+        if (req.headers.token) {
+          // 已认证
+          next()
+        } else {
+          // 用户未授权
+          res.sendStatus(401)
+        }
+      }
 
       //   // 获取登录用户信息
-        /*app.get("/api/userinfo", auth, function(req, res) {
+        app.get("/api/userinfo", auth, function(req, res) {
           res.json({ code: 1, data: { name: "tom", age: 20 } });
-        });*/
+        });
       }
     }
   }

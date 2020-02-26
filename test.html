@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MVVM</title>
+</head>
+<body>
+    <input type="text" id='input' />
+    <div id='div'></div>
+    <script>
+        "use strict";
+        let obj = {
+            text:11111
+        }
+        let input = document.getElementById('input');
+        let divTest = document.querySelector('div');
+        input.value = obj.text;
+        divTest.innerHTML = obj.text;
+        input.addEventListener('keyup',()=>{
+            obj.text = input.value
+        })
+       
+        Object.defineProperty(obj,'text',{
+            set(val){
+                input.value = val;
+                divTest.innerHTML = val;
+            }
+        })   
+    </script>
+</body>
+</html>
