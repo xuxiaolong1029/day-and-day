@@ -14,7 +14,7 @@ router.get("/api/login", async ctx => {
   const { username, passwd } = ctx.query;
   console.log(username, passwd);
 
-  if (username === "kaikeba" && passwd === "123") {
+  if (username == "kaikeba" && passwd == "123") {
     // 生成令牌
     const token = jwt.sign(
       {
