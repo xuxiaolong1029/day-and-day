@@ -15,7 +15,9 @@ export default {
   },
   getters: { // 添加一个goods属性，转换对象形式为数组形式便于循环渲染
     goods: state => {
-      return state.keys.map(key=>state.getGoodsInfo[key]).reduce((prev, next) => prev.concat(next), []);
+      return state.keys
+        .map(key => state.goodsInfo[key])
+        .reduce((prev, next) => prev.concat(next), []);
     }
   },
   actions: {

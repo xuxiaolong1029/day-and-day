@@ -7,7 +7,7 @@ import cart from './cart'
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-  modules:{
-    user, goods, cart
-  }
+ modules:{
+   user, goods, cart
+ }
 });

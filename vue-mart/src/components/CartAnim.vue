@@ -1,9 +1,6 @@
 <template>
   <div class="ball-wrap">
-    <transition 
-        @before-enter="beforeEnter" 
-        @enter="enter" 
-        @afterEnter="afterEnter">
+    <transition @before-enter="beforeEnter" @enter="enter" @afterEnter="afterEnter">
       <div class="ball" v-show="show" :style="pos">
         <div class="inner">
           <div class="cubeic-add"></div>
@@ -42,7 +39,6 @@ export default {
     enter(el, done) {
       // 获取offsetHeight就会重绘
       document.body.offsetHeight;
-
       // 指定动画结束位置
       el.style.transform = `translate3d(0, 0, 0)`;
       const inner = el.querySelector(".inner");
@@ -67,7 +63,6 @@ export default {
     z-index: 100000;
     color: red;
     transition: all 0.5s cubic-bezier(0.49, -0.29, 0.75, 0.41);
-
     .inner {
       width: 16px;
       height: 16px;
