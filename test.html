@@ -7,25 +7,21 @@
 <body>
     <input type="text" id='input' />
     <div id='div'></div>
-    <script>
-        "use strict";
-        let obj = {
-            text:11111
-        }
-        let input = document.getElementById('input');
-        let divTest = document.querySelector('div');
+    <Script>
+        let input = document.querySelector('input');
+        let divTxt = document.querySelector('div');
+        let obj={text:'nihao'};
         input.value = obj.text;
-        divTest.innerHTML = obj.text;
-        input.addEventListener('keyup',()=>{
-            obj.text = input.value
+        divTxt.innerText = obj.text
+        input.addEventListener('input',(e)=>{
+            obj.text = e.target.value;
         })
-       
         Object.defineProperty(obj,'text',{
             set(val){
                 input.value = val;
-                divTest.innerHTML = val;
+                divTxt.innerText = val;
             }
-        })   
-    </script>
+        })
+    </Script>
 </body>
 </html>
