@@ -30,9 +30,7 @@ router.get("/api/login", async ctx => {
   }
 });
 
-router.get(
-  "/api/userinfo",
-  jwtAuth({ secret }),
+router.get("/api/userinfo",jwtAuth({ secret }),
   async ctx => {
     ctx.body = { code: 1, data: { name: "jerry", age: 20 } };
   }
