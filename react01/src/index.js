@@ -4,8 +4,8 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-//React负责逻辑控制
-//JSX实质就是React.ceeateElement的调用
+// React负责逻辑控制
+// ReactDOM.render(<h1>react</h1>, document.getElementById('root'));
 ReactDOM.render(<App />, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
