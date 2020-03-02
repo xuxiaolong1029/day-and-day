@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MVVM(Proxy)</title>
+</head>
+<body>
+ <input type="text" id="input" />
+ <div></div>
+ <script type="text/javascript">
+     "use strict";
+     const obj = {text:'3434'};
+     const input = document.getElementById('input');
+     const divTest = document.querySelector('div');
+     input.value = obj.text;
+     divTest.innerText = obj.text;
+     const handler={
+        get(target,key,val){
+            input.value = val;
+            divTest.innerHTML = val;
+        },
+        set(target,key,val){
+
+        }
+     }
+     let newObj = new Proxy(obj,handler)
+     input.addEventListener('input',(e)=>{
+        newObj.text = e.target.value
+     })
+ </script>
+</body>
+</html>
