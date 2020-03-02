@@ -15,12 +15,13 @@
      input.value = obj.text;
      divTest.innerText = obj.text;
      const handler={
-        get(target,key,val){
+        get(target,key,val,receiver){  
+            //return Reflect.get(target, key, receiver);
+        },
+        set(target,key,val,receiver){
             input.value = val;
             divTest.innerHTML = val;
-        },
-        set(target,key,val){
-
+            return Reflect.set(target, key, val, receiver);
         }
      }
      let newObj = new Proxy(obj,handler)
