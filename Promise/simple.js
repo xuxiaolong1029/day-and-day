@@ -10,7 +10,7 @@ class Promise{
         //拒绝原因
         this.reason = null;
         //成功状态回调对列
-        this.onFulfilledCallbacks =[];
+        this.onFulfilledCallbacks = [];
         //拒绝状态回调对列
         this.onRejectedCallBacks = [];
 
@@ -50,8 +50,13 @@ class Promise{
         }
     }
     then(onFulfilled,onRejected){
-        typeof onFulfilled==='function'&&this.onFulfilledCallbacks.push(onFulfilled);
-        typeof onRejected==='function'&&this.onRejectedCallbacks.push(onRejected);
+        if(typeof onFulfilled==='function'){
+            //加人对列中
+            this.onFulfilledCallbacks.push(onFulfilled);
+        }
+        if(typeof onRejected==='function'){
+            this.onRejectedCallbacks.push(onRejected);
+        }
          // 返回this支持then 方法可以被同一个 promise 调用多次
          return this;
     }

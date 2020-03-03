@@ -15,10 +15,10 @@
      input.value = obj.text;
      divTest.innerText = obj.text;
      Object.defineProperty(obj,'text',{
-         set(val){
-             input.value = val;
-             divTest.innerHTML = val;
-         }
+        set(val){
+            input.value = val;
+            divTest.innerHTML = val;
+        }
      });
      input.addEventListener('input',()=>{
         obj.text = input.value
