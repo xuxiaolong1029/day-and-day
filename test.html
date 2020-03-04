@@ -5,22 +5,23 @@
     <title>MVVM</title>
 </head>
 <body>
-    <input type="text" id='input' />
-    <div id='div'></div>
+    <input type="text" />
+    <div></div>
     <Script>
-        let input = document.querySelector('input');
-        let divTxt = document.querySelector('div');
-        let obj={text:'nihao'};
+        let input  = document.querySelector('input');
+        let divText = document.querySelector('div');
+        let obj={text:'123'};
         input.value = obj.text;
-        divTxt.innerText = obj.text
-        input.addEventListener('input',(e)=>{
-            obj.text = e.target.value;
-        })
-        Object.defineProperty(obj,'text',{
-            set(val){
+        divText.innerText = obj.text;
+        const newObj = new Proxy(obj,{
+            set(target,key,val){
                 input.value = val;
-                divTxt.innerText = val;
+                divText.innerText = val;
+                return Reflect.set(target)
             }
+        })
+        input.addEventListener('keyup',(e)=>{
+            newObj.text = e.target.value
         })
     </Script>
 </body>
