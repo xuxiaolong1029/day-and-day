@@ -50,9 +50,13 @@ class Promise{
         }
     }
     then(onFulfilled,onRejected){
-        typeof onFulfilled==='function'&&this.onFulfilledCallbacks.push(onFulfilled);
-        typeof onRejected==='function'&&this.onRejectedCallbacks.push(onRejected);
-         // 返回this支持then 方法可以被同一个 promise 调用多次
-         return this;
+        if(typeof onFulfilled==='function'){
+            this.onFulfilledCallbacks.push(onFulfilled);
+        }
+        if(typeof onRejected==='function'){
+            this.onRejectedCallbacks.push(onRejected);
+        }
+        // 返回this支持then 方法可以被同一个 promise 调用多次
+        return this;
     }
 }
