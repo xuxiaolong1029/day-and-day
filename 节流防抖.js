@@ -2,13 +2,13 @@
 //典型的案例就是输入框搜索：输入结束后n秒才进行搜索请求，n秒内又输入的内容，则重新计时。
 let timer;
 function debounce(){
-    if (timer) {
-        clearTimeout(timer);
-      }
-      timer = setTimeout(() => {
-        console.log("防抖...");
-        timer = undefined;
-      }, 2000);
+    if(timer) {
+      clearTimeout(timer);
+    }
+    timer = setTimeout(() => {
+      console.log("防抖...");
+      timer = undefined;
+    },2000);
 }
 
 //节流(throttle)：规定在一个单位时间内，只能触发一次函数，如果这个单位时间内触发多次函数，只有一次生效。
@@ -16,18 +16,17 @@ function debounce(){
 let timer, lastTime;
 let now = new Date();
 function throttle(){
-    if (lastTime && now - lastTime < 200) {
-        clearTimeout(timer);
-        timer = setTimeout(() => {
-          console.log("点击...");
-          lastTime = +new Date();
-        }, 2000);
-    } else {
-        lastTime = now;
-        timer = setTimeout(() => {
-          console.log("点击...");
-          lastTime = +new Date();
-        }, 200);
-    }
-    
+  if(lastTime && now - lastTime < 200) {
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        console.log("点击...");
+        lastTime = +new Date();
+      }, 2000);
+  }else{
+      lastTime = now;
+      timer = setTimeout(() => {
+        console.log("点击...");
+        lastTime = +new Date();
+      }, 200);
+  }
 }

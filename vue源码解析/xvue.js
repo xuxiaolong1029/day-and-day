@@ -4,6 +4,7 @@ class XVue {
         this.$options = options;
         //数据响应化
         this.$data = options.data;
+    debugger
         this.Observe(this.$data);
 
         //测试代码 模拟一下Watcher
