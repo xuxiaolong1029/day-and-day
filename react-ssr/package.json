@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev:client": "webpack --config webpack.client.js --watch",
-    "dev:server": "webpack --config webpack.server.js --watch",
+    "dev:client": "cross-env NODE_ENV=development webpack --config webpack.client.js --watch",
+    "dev:server": "cross-env NODE_ENV=development webpack --config webpack.server.js --watch",
+    "build": "rimraf build && rimraf public && npm run dev:client && npm run dev:server",
     "dev:start": "nodemon --watch build --exec node \"./build/bundle.js\""
   },
   "author": "xuxiaolong",
@@ -15,10 +16,14 @@
     "@babel/preset-env": "^7.8.6",
     "@babel/preset-react": "^7.8.3",
     "babel-loader": "^8.0.6",
+    "cross-env": "^6.0.3",
     "express": "^4.17.1",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
+    "react-router-dom": "^5.1.2",
+    "rimraf": "^2.6.0",
     "webpack": "^4.42.0",
-    "webpack-cli": "^3.3.11"
+    "webpack-cli": "^3.3.11",
+    "webpack-merge": "^4.2.2"
   }
 }

@@ -1,19 +1,25 @@
 import express from 'express';
 import React from 'react'
-import {renderToString} from 'react-dom/server'
-import Index from '../container/index'
+import {renderToString} from 'react-dom/server';
+import {StaticRouter} from 'react-router-dom';
+import Routes from '../Routes';
 const app = express()
 app.use(express.static('public'))
 
-app.get('/',function(req,res){
+app.get('*',function(req,res){
     let content = renderToString(
-        <Index></Index>
+       <StaticRouter location={req.url}>
+           {Routes}
+       </StaticRouter>
     )
     let html = `
     <html>
-        <head>react-ssr</head>
+        <head>
+            <title>react-ssr</title>
+        </head>
         <body>
             <div id='root'>${content}</div>
+            <script src='/main.js'></script>  
         </body>
     </html>
     `
