@@ -21,7 +21,7 @@ var baiduMapAdapter = {
 
 var baiduMap={
     show:function () {
-        return baiduMap.display();
+        return baiduMapAdapter.display();
     }
 };
 

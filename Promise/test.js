@@ -1,23 +1,21 @@
-const pending = 'pending';
-const fulfilled = 'fulfilled';
-const rejected = 'rejected';
+let pending = 'pending';
+let fulFilled = 'fulFilled';
+let rejected = 'rejected';
 
-class promise{
+class Promise {
     constructor(fn){
         this.state = pending;
-
         this.value = null;
         this.reason = null;
-
-        this.onFulfilledCb = [];
-        this.onRejectedCb = [];
+        this.onFulfilledCallbacks = [];
+        this.onRejectedCallbacks = [];
 
         const resolve = value =>{
             setTimeout(()=>{
-                if(this.state === pending){
-                    this.state = fulfilled;
+                if(this.state===pending){
+                    this.state = fulFilled;
                     this.value = value;
-                    this.onFulfilledCb.map(cb=>{
+                    this.onFulfilledCallbacks.map(cb=>{
                         this.value = cb(this.value);
                     })
                 }
@@ -25,28 +23,28 @@ class promise{
         }
         const reject = reason =>{
             setTimeout(()=>{
-                if(this.state === pending){
+                if(this.state===pending){
                     this.state = rejected;
                     this.reason = reason;
-                    this.onFulfilledCb.map(cb=>{
+                    this.onRejectedCallbacks.map(cb=>{
                         this.reason = cb(this.reason);
                     })
                 }
             })
         }
-        try{
+        try {
             fn(resolve,reject)
-        }catch(e){
-            reject(e)
+        }catch (e) {
+            resolve(e)
         }
     }
     then(onFulfilled,onRejected){
-        if(typeof onFulfilled==='function'){
-            this.onFulfilledCb.push(onFulfilled)
+        if(typeof onFulfilled === 'function'){
+            this.onFulfilledCallbacks.push(onFulfilled)
         }
-        if(typeof onRejected==='function'){
-            this.onRejectedCb.push(onRejected)
+        if(typeof onRejected === 'function'){
+            this.onRejectedCallbacks.push(onRejected)
         }
-        return this;
+        return this
     }
 }
