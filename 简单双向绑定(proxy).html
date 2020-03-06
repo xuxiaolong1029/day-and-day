@@ -14,17 +14,13 @@
      const divTest = document.querySelector('div');
      input.value = obj.text;
      divTest.innerText = obj.text;
-     const handler={
-        get(obj){  
-            return Reflect.get(obj);
-        },
-        set(obj,key,val,receiver){
-            input.value = val;
-            divTest.innerHTML = val;
-            return Reflect.set(obj);
-        }
-     }
-     let newObj = new Proxy(obj,handler)
+     const newObj = new Proxy(obj,{
+         set(target,key,value){
+             input.value = value;
+             divTest.innerText = value;
+             return Reflect.set(target,key,value);
+         }
+     })
      input.addEventListener('input',(e)=>{
         newObj.text = e.target.value
      })

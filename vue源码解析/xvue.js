@@ -62,7 +62,9 @@ class XVue {
         })
     }
 }
+Array.prototype.sort = function () {
 
+}
 //Dep 用来管理Watcher
 class Dep {
     constructor(){
