@@ -8,16 +8,16 @@
     <input type="text" />
     <div></div>
     <Script>
-        let input  = document.querySelector('input');
-        let divText = document.querySelector('div');
-        let obj={text:'123'};
+        let obj={text:'sasa'}
+        const input = document.querySelector('input');
+        const divText = document.querySelector('div');
         input.value = obj.text;
         divText.innerText = obj.text;
         const newObj = new Proxy(obj,{
             set(target,key,val){
                 input.value = val;
                 divText.innerText = val;
-                return Reflect.set(target)
+                return Reflect.set(target,key,val)
             }
         })
         input.addEventListener('keyup',(e)=>{

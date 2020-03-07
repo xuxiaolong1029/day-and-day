@@ -15,11 +15,11 @@
      input.value = obj.text;
      divTest.innerText = obj.text;
      const newObj = new Proxy(obj,{
-         set(target,key,value){
-             input.value = value;
-             divTest.innerText = value;
-             return Reflect.set(target,key,value);
-         }
+        set(target,key,value){
+            input.value = value;
+            divTest.innerText = value;
+            return Reflect.set(target,key,value);
+        }
      })
      input.addEventListener('input',(e)=>{
         newObj.text = e.target.value
