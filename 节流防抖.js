@@ -30,3 +30,32 @@ function throttle(){
       },200);
   }
 }
+
+//  //节流
+//  const throttle = (func,wait=100)=>{
+//   let lastTime = 0
+//   return (...args)=>{
+//       let now  = new Date().getTime()
+//       if (now-lastTime>wait){
+//           func.apply(this,args)
+//           let lastTime = now
+//       }
+//   }
+// }
+// //防抖
+// const debounce = (func,wait=350)=>{
+//   let timer =0;
+//   return (...args)=>{
+//       if(timer){
+//           clearTimeout(timer)
+//       }
+//       timer = setTimeout(()=>{
+//           func.apply(this,ages)
+//       },wait)
+//   }
+// }
+// window.addEventListener('scroll',
+// debounce(()=>{
+//    console.log(i)
+// },350)
+// )
