@@ -1,14 +1,19 @@
-import React,{useState} from 'react';
-
-//hooks组件
-const Login =()=>{
-    
-    return(
+import React , {useState} from 'react';
+import { Helmet } from 'react-helmet';
+const Login = () => {
+  return (
+    <div>
+        <Helmet>
+          <title>开课吧登录</title>
+          <meta name="description" content="这里是开课吧登录页"/>
+        </Helmet>
+        <h1>
+            登录
+        </h1>
         <div>
-            <h1>登录</h1>
-            <input type='text' placeholder='用户名' />
-            <input type='text' placeholder='密码' />
+            <input type="text"/>
         </div>
-    )
+    </div>
+  )
 }
 export default Login
