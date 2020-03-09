@@ -21,12 +21,12 @@ function throttle(){
       timer = setTimeout(() => {
         console.log("点击...");
         lastTime = +new Date();
-      }, 2000);
+      },2000);
   }else{
       lastTime = now;
       timer = setTimeout(() => {
         console.log("点击...");
         lastTime = +new Date();
-      }, 200);
+      },200);
   }
 }

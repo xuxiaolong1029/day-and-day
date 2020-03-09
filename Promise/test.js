@@ -20,7 +20,7 @@ class Promise {
                     })
                 }
             })
-        }
+        };
         const reject = reason =>{
             setTimeout(()=>{
                 if(this.state===pending){
@@ -31,7 +31,7 @@ class Promise {
                     })
                 }
             })
-        }
+        };
         try {
             fn(resolve,reject)
         }catch (e) {
