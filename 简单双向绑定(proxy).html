@@ -5,25 +5,25 @@
     <title>MVVM(Proxy)</title>
 </head>
 <body>
- <input type="text" />
- <div></div>
- <script type="text/javascript">
-     "use strict";
-     const obj = {text:'3434'};
-     const input = document.querySelector('input');
-     const divTest = document.querySelector('div');
-     input.value = obj.text;
-     divTest.innerText = obj.text;
-     const newObj = new Proxy(obj,{
-        set(target,key,value){
-            input.value = value;
-            divTest.innerText = value;
-            return Reflect.set(target,key,value);
-        }
-     })
-     input.addEventListener('input',(e)=>{
-        newObj.text = e.target.value
-     })
- </script>
+    <input type="text" />
+    <div></div>
+    <script type="text/javascript">
+        "use strict";
+        const obj = {text:'3434'};
+        const input = document.querySelector('input');
+        const divTest = document.querySelector('div');
+        input.value = obj.text;
+        divTest.innerText = obj.text;
+        const newObj = new Proxy(obj,{
+            set(target,key,value){
+                input.value = value;
+                divTest.innerText = value;
+                return Reflect.set(target,key,value);
+            }
+        })
+        input.addEventListener('input',(e)=>{
+            newObj.text = e.target.value
+        })
+    </script>
 </body>
 </html>

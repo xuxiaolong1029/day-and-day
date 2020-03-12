@@ -7,20 +7,22 @@ class Promise {
         this.state = pending;
         this.value = null;
         this.reason = null;
+
         this.onFulfilledCallbacks = [];
         this.onRejectedCallbacks = [];
-
+        //resolve  决心决定
         const resolve = value =>{
             setTimeout(()=>{
                 if(this.state===pending){
                     this.state = fulFilled;
                     this.value = value;
                     this.onFulfilledCallbacks.map(cb=>{
-                        this.value = cb(this.value);
+                        this.value = cb(this.value)
                     })
                 }
             })
         };
+        //reject  拒绝
         const reject = reason =>{
             setTimeout(()=>{
                 if(this.state===pending){
