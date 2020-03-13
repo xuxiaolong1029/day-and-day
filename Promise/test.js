@@ -1,8 +1,8 @@
 let pending = 'pending';
 let fulFilled = 'fulFilled';
-let rejected = 'rejected';
+let rejected = 'rejected'
 
-class Promise {
+class Promise{
     constructor(fn){
         this.state = pending;
         this.value = null;
@@ -10,22 +10,21 @@ class Promise {
 
         this.onFulfilledCallbacks = [];
         this.onRejectedCallbacks = [];
-        //resolve  决心决定
-        const resolve = value =>{
+
+        const reselve = value =>{
             setTimeout(()=>{
-                if(this.state===pending){
+                if(this.state === pending){
                     this.state = fulFilled;
                     this.value = value;
                     this.onFulfilledCallbacks.map(cb=>{
-                        this.value = cb(this.value)
+                        this.value = cb(this.value);
                     })
                 }
             })
-        };
-        //reject  拒绝
+        }
         const reject = reason =>{
             setTimeout(()=>{
-                if(this.state===pending){
+                if(this.state === pending){
                     this.state = rejected;
                     this.reason = reason;
                     this.onRejectedCallbacks.map(cb=>{
@@ -33,20 +32,22 @@ class Promise {
                     })
                 }
             })
-        };
-        try {
-            fn(resolve,reject)
-        }catch (e) {
-            resolve(e)
+        }
+
+        try{
+            fn(reselve,reject)
+        }catch(e){
+            reject(e)
         }
     }
-    then(onFulfilled,onRejected){
+    then(onFulfilled,onReject){
         if(typeof onFulfilled === 'function'){
             this.onFulfilledCallbacks.push(onFulfilled)
         }
-        if(typeof onRejected === 'function'){
-            this.onRejectedCallbacks.push(onRejected)
+        if(typeof onReject === 'function'){
+            this.onRejectedCallbacks.push(onReject)
         }
         return this
     }
+    
 }

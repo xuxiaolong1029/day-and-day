@@ -20,9 +20,10 @@
                 return Reflect.set(target,key,val)
             }
         })
-        input.addEventListener('keyup',(e)=>{
+        input.addEventListener('input',(e)=>{
             newObj.text = e.target.value
         })
+
     </Script>
 </body>
 </html>

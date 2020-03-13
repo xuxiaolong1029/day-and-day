@@ -1,4 +1,3 @@
-//有序数组中小于某个数的个数
  function quickSort(arr) {
     if(arr.length<2){
         return arr
@@ -22,4 +21,4 @@ function fn(n) {
         return fn(n-1)+fn(n-2);
     }
 }
-console.log(fn(10));
+console.log(fn(2));
