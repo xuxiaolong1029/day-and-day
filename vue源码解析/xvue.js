@@ -1,7 +1,6 @@
 // new Kvue({data})
 class XVue {
     constructor(options){
-        debugger
         this.$options = options;
         //数据响应化
         this.$data = options.data;
